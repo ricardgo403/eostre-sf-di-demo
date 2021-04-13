@@ -1,9 +1,6 @@
 package com.example.ricardgo403.eostresfdidemo;
 
-import com.example.ricardgo403.eostresfdidemo.controllers.ConstructorInjectedController;
-import com.example.ricardgo403.eostresfdidemo.controllers.MyController;
-import com.example.ricardgo403.eostresfdidemo.controllers.PropertyInjectedController;
-import com.example.ricardgo403.eostresfdidemo.controllers.SetterInjectedController;
+import com.example.ricardgo403.eostresfdidemo.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +13,10 @@ public class DependencyInjectionDemoProjectApplication {
 		ApplicationContext ctx = SpringApplication.run(DependencyInjectionDemoProjectApplication.class, args);
 		MyController myController = (MyController) ctx.getBean("myController");
 		System.out.println("myController ctx greeting: " + myController.getGreeting());
+
+		System.out.println("------Primary bean");
+		MyControllerRefactored myControllerRefactored = (MyControllerRefactored) ctx.getBean("myControllerRefactored");
+		System.out.println("myControllerRefactored ctx greeting: " + myControllerRefactored.getGreeting());
 		System.out.println("------Property");
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 		System.out.println("PropertyInjectedController ctx greeting: " + propertyInjectedController.getGreeting());
