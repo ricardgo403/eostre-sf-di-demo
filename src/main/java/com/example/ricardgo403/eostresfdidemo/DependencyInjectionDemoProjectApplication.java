@@ -28,6 +28,10 @@ public class DependencyInjectionDemoProjectApplication {
 		System.out.println("------Constructor");
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println("ConstructorInjectedController ctx greeting: " + constructorInjectedController.getGreeting());
+
+		System.out.println("------Profiles");
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println("I18nController ctx greeting: " + i18nController.getGreeting());
 	}
 
 }
