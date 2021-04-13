@@ -32,6 +32,10 @@ public class DependencyInjectionDemoProjectApplication {
 		System.out.println("------Profiles");
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println("I18nController ctx greeting: " + i18nController.getGreeting());
+
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
 	}
 
 }
