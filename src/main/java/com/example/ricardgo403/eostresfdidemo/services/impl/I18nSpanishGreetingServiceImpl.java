@@ -4,7 +4,7 @@ import com.example.ricardgo403.eostresfdidemo.services.IGreetingService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Profile("ES-MX")
+@Profile({"ES-MX", "default"})
 @Service("i18nService")
 public class I18nSpanishGreetingServiceImpl implements IGreetingService {
     @Override
