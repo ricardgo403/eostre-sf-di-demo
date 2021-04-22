@@ -1,17 +1,42 @@
 package com.example.ricardgo403.eostresfdidemo.configs;
 
+import com.example.ricardgo403.eostresfdidemo.repositories.EnglishGreetingRepository;
+import com.example.ricardgo403.eostresfdidemo.repositories.impl.EnglishGreetingRepositoryImpl;
+import com.example.ricardgo403.eostresfdidemo.services.IPetService;
+import com.example.ricardgo403.eostresfdidemo.services.PetServiceFactory;
 import com.example.ricardgo403.eostresfdidemo.services.impl.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
 /***
  * @author Copyright 2021 @ricardgo403., All Rights Reserved.
  * Created on 4/20/21
  ***/
+
+//@ImportResource("classpath:didemoproject-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    @Profile({"dog", "default"})
+    @Bean
+    IPetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Profile("cat")
+    @Bean
+    IPetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
+    }
+
+    @Bean
+    EnglishGreetingRepository englishGreetingRepository(){
+        return new EnglishGreetingRepositoryImpl();
+    }
 
     @Primary
     @Bean
@@ -36,7 +61,9 @@ public class GreetingServiceConfig {
 
     @Profile("EN-AU")
     @Bean
-    I18nEnglishGreetingServiceWOImpl i18nService() {return new I18nEnglishGreetingServiceWOImpl();}
+    I18nEnglishGreetingServiceWOImpl i18nService(EnglishGreetingRepository englishGreetingRepository) {
+        return new I18nEnglishGreetingServiceWOImpl(englishGreetingRepository);
+    }
 
     @Profile("ES")
     @Bean("i18nService")
