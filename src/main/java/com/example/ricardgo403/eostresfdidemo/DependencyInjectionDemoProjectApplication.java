@@ -1,10 +1,13 @@
 package com.example.ricardgo403.eostresfdidemo;
 
 import com.example.ricardgo403.eostresfdidemo.controllers.*;
+import com.example.ricardgo403.eostresfdidemo.services.impl.ConstructorGreetingServiceWOImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+//@ComponentScan(basePackages = {"com.example.ricardgo403.eostresfdidemo","com.example.ricardgo403.eostresfdidemo2"})
 @SpringBootApplication
 public class DependencyInjectionDemoProjectApplication {
 
@@ -29,6 +32,10 @@ public class DependencyInjectionDemoProjectApplication {
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println("ConstructorInjectedController ctx greeting: " + constructorInjectedController.getGreeting());
 
+		System.out.println("------Constructor 2");
+		ConstructorGreetingServiceWOImpl constructorGreetingServiceWO = (ConstructorGreetingServiceWOImpl) ctx.getBean("constructorGreetingServiceWO");
+		System.out.println("ConstructorGreetingServiceWOImpl ctx greeting: " + constructorGreetingServiceWO.sayGreeting());
+
 		System.out.println("------Profiles");
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println("I18nController ctx greeting: " + i18nController.getGreeting());
@@ -36,6 +43,7 @@ public class DependencyInjectionDemoProjectApplication {
 		PetController petController = ctx.getBean("petController", PetController.class);
 		System.out.println("--- The Best Pet is ---");
 		System.out.println(petController.whichPetIsTheBest());
+
 	}
 
 }

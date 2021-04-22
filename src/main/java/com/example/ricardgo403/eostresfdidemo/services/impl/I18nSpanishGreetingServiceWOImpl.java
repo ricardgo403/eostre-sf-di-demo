@@ -1,14 +1,14 @@
 package com.example.ricardgo403.eostresfdidemo.services.impl;
 
 import com.example.ricardgo403.eostresfdidemo.services.IGreetingService;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-//@Primary
-@Service
-public class PrimaryGreetingService implements IGreetingService {
+//@Profile({"ES", "default"})
+//@Service("i18nService")
+public class I18nSpanishGreetingServiceWOImpl implements IGreetingService {
     @Override
     public String sayGreeting() {
-        return "Hello, World! - From the Primary Bean";
+        return "Hola, Mundo! - ES";
     }
 }
