@@ -13,7 +13,7 @@ import org.springframework.context.annotation.*;
  * @author Copyright 2021 @ricardgo403., All Rights Reserved.
  * Created on 4/20/21
  ***/
-@PropertySource("classpath:datasource.properties")
+//@PropertySource("classpath:datasource.properties")
 //@ImportResource("classpath:didemoproject-config.xml")
 @Configuration
 public class GreetingServiceConfig {
