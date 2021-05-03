@@ -6,8 +6,10 @@ import com.example.ricardgo403.eostresfdidemo.repositories.impl.EnglishGreetingR
 import com.example.ricardgo403.eostresfdidemo.services.IPetService;
 import com.example.ricardgo403.eostresfdidemo.services.PetServiceFactory;
 import com.example.ricardgo403.eostresfdidemo.services.impl.*;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 /***
  * @author Copyright 2021 @ricardgo403., All Rights Reserved.
@@ -19,13 +21,11 @@ import org.springframework.context.annotation.*;
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${clinic.username}") String username,
-                                  @Value("${clinic.password}") String password,
-                                  @Value("${clinic.jdbcUrl}") String jdbcUrl) {
+    FakeDataSource fakeDataSource(SfgConfig sfgConfig) {
         var fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(username);
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setJdbcUrl(jdbcUrl);
+        fakeDataSource.setUsername(sfgConfig.getUsername());
+        fakeDataSource.setPassword(sfgConfig.getPassword());
+        fakeDataSource.setJdbcUrl(sfgConfig.getJdbcUrl());
         return fakeDataSource;
     }
 

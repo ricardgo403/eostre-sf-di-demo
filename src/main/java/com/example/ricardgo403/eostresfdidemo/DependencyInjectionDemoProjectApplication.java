@@ -1,5 +1,6 @@
 package com.example.ricardgo403.eostresfdidemo;
 
+import com.example.ricardgo403.eostresfdidemo.configs.SfgConfig;
 import com.example.ricardgo403.eostresfdidemo.controllers.*;
 import com.example.ricardgo403.eostresfdidemo.datasources.FakeDataSource;
 import com.example.ricardgo403.eostresfdidemo.services.impl.ConstructorGreetingServiceWOImpl;
@@ -60,6 +61,12 @@ public class DependencyInjectionDemoProjectApplication {
 		System.out.println(fakeDataSource.getUsername());
 		System.out.println(fakeDataSource.getPassword());
 		System.out.println(fakeDataSource.getJdbcUrl());
+
+		System.out.println("-------- Config Props bean");
+		var sfgConfig = ctx.getBean(SfgConfig.class);
+		System.out.println(sfgConfig.getUsername());
+		System.out.println(sfgConfig.getPassword());
+		System.out.println(sfgConfig.getJdbcUrl());
 	}
 
 }
