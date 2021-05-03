@@ -1,0 +1,4 @@
+clinic:
+  username: ymlUsername
+  password: ymlPassword
+  jdbcUrl: ymlUrl
