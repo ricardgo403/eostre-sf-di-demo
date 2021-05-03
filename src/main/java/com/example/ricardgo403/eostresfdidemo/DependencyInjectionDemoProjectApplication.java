@@ -1,13 +1,12 @@
 package com.example.ricardgo403.eostresfdidemo;
 
 import com.example.ricardgo403.eostresfdidemo.controllers.*;
+import com.example.ricardgo403.eostresfdidemo.datasources.FakeDataSource;
 import com.example.ricardgo403.eostresfdidemo.services.impl.ConstructorGreetingServiceWOImpl;
 import com.example.ricardgo403.eostresfdidemo.services.impl.PrototypeBean;
 import com.example.ricardgo403.eostresfdidemo.services.impl.SingletonBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 //@ComponentScan(basePackages = {"com.example.ricardgo403.eostresfdidemo","com.example.ricardgo403.eostresfdidemo2"})
 @SpringBootApplication
@@ -56,6 +55,11 @@ public class DependencyInjectionDemoProjectApplication {
 		System.out.println(prototypeBean1.getMyScope());
 		var prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyScope());
+
+		var fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDataSource.getUsername());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getJdbcUrl());
 	}
 
 }
